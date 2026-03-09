@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omar Ahmed Samy · dark modern portfolio</title>
+    <!-- Google Fonts: Inter (clean and modern) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0b0f17;  /* deep dark base */
+            color: #eef2fb;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+
+        /* ========== GLASS BACKGROUND EFFECT ========== */
+        .glass-panel {
+            background: rgba(18, 25, 40, 0.4);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 42px;
+            box-shadow: 0 30px 50px -25px rgba(0, 0, 0, 0.8), inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+        }
+
+        /* ========== HERO SECTION (dark glass) ========== */
+        .hero {
+            background: radial-gradient(circle at 70% 20%, #1f2a44, #03050b 90%);
+            color: white;
+            padding: 72px 0 56px;
+            position: relative;
+            overflow: hidden;
+            border-bottom-left-radius: 56px;
+            border-bottom-right-radius: 56px;
+            box-shadow: 0 30px 40px -25px black;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, #2f4b7c, transparent 70%);
+            top: -300px;
+            right: -200px;
+            opacity: 0.2;
+            border-radius: 50%;
+            z-index: 0;
+        }
+        .hero .container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff, #bdd3ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+        }
+        .hero-tagline {
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: #b7c9f0;
+            margin-bottom: 24px;
+        }
+        .hero-contact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px 36px;
+            justify-content: center;
+            margin: 28px 0 32px;
+        }
+        .hero-contact a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px 28px;
+            border-radius: 60px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+        }
+        .hero-contact a:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: #5f8ad4;
+            transform: scale(1.05);
+        }
+        .hero-img {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(255,255,255,0.25);
+            box-shadow: 0 30px 50px -15px #000000cc;
+            margin: 30px 0 10px;
+            transition: 0.4s;
+        }
+        .hero-img:hover {
+            transform: scale(1.02);
+            border-color: #8bb1ff;
+        }
+
+        /* ========== STICKY NAV (glass) ========== */
+        .sticky-nav {
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+            margin-top: -28px;
+            margin-bottom: 28px;
+        }
+        .nav-wrap {
+            background: rgba(10, 15, 28, 0.7);
+            backdrop-filter: blur(16px) saturate(200%);
+            -webkit-backdrop-filter: blur(16px) saturate(200%);
+            border-radius: 80px;
+            padding: 10px 16px;
+            box-shadow: 0 20px 35px -10px #000000, 0 0 0 1px rgba(255,255,255,0.05) inset;
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 0 auto;
+        }
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            justify-content: center;
+        }
+        .nav-links a {
+            padding: 12px 28px;
+            font-weight: 600;
+            border-radius: 60px;
+            color: #d0daff;
+            text-decoration: none;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+        }
+        .nav-links a i {
+            font-size: 1.2rem;
+            color: #9bb4f0;
+        }
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        .nav-links a.active {
+            background: #25395c;
+            color: white;
+            box-shadow: 0 8px 16px -8px #000000;
+        }
+        .nav-links a.active i {
+            color: white;
+        }
+
+        /* ========== PAGE SECTIONS (glass panels) ========== */
+        .page-section {
+            background: rgba(12, 18, 30, 0.5);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border-radius: 56px;
+            padding: 60px 60px;
+            margin: 60px 0;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 30px 50px -25px black, inset 0 0 0 1px rgba(255,255,255,0.02);
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #f0f4ff;
+            border-bottom: 2px solid #3b5688;
+            padding-bottom: 12px;
+        }
+        .section-title i {
+            font-size: 2.5rem;
+            background: linear-gradient(145deg, #a0bcff, #5d82d0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* about */
+        .about-grid {
+            display: flex;
+            gap: 80px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .about-grid img {
+            width: 380px;
+            height: 380px;
+            border-radius: 40% 60% 40% 60% / 60% 40% 60% 40%;
+            object-fit: cover;
+            border: 4px solid rgba(255,255,255,0.2);
+            box-shadow: 0 50px 70px -30px black;
+            transition: 0.5s;
+        }
+        .about-grid img:hover {
+            border-radius: 50% 50% 40% 60% / 50% 40% 60% 50%;
+            transform: scale(1.02);
+            border-color: #6789cf;
+        }
+        .about-text p {
+            font-size: 1.2rem;
+            color: #cfdcff;
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+        .btn-modern {
+            background: rgba(40, 60, 100, 0.6);
+            backdrop-filter: blur(8px);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 16px 42px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 20px 25px -10px #0000004d;
+            transition: 0.25s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-modern i { margin-right: 8px; }
+        .btn-modern:hover {
+            background: #2a4070;
+            transform: translateY(-5px);
+            border-color: #7c9ef0;
+        }
+
+        /* skills grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+        }
+        .skill-card {
+            background: rgba(18, 28, 45, 0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 36px;
+            padding: 40px 20px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.25s;
+        }
+        .skill-card:hover {
+            background: rgba(30, 45, 70, 0.7);
+            transform: translateY(-10px);
+            border-color: #4a6fb5;
+            box-shadow: 0 30px 30px -14px #00000080;
+        }
+        .skill-card i {
+            font-size: 3.8rem;
+            background: linear-gradient(145deg, #adc4ff, #6d94f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 18px;
+        }
+        .skill-card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ebf0ff;
+            margin-bottom: 15px;
+        }
+        .skill-card p {
+            font-size: 1.1rem;
+            color: #b2c6f0;
+        }
+
+        /* project card */
+        .project-card {
+            display: flex;
+            gap: 40px;
+            background: rgba(15, 22, 38, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 48px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255,255,255,0.05);
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .project-card:hover {
+            background: rgba(25, 35, 55, 0.7);
+            border-color: #3c5b99;
+        }
+        .project-icon {
+            font-size: 5rem;
+            background: linear-gradient(145deg, #b2caff, #5a80d0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            min-width: 120px;
+            text-align: center;
+        }
+        .project-content {
+            flex: 1;
+        }
+        .project-content h3 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #eaf1ff;
+            margin-bottom: 10px;
+        }
+        .project-content p {
+            font-size: 1.15rem;
+            color: #c6d5ff;
+            margin-bottom: 25px;
+        }
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0 15px;
+        }
+        .github-btn {
+            background: #1e2a41;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid #3f5188;
+            transition: 0.2s;
+        }
+        .github-btn:hover {
+            background: #253b60;
+            transform: translateY(-3px);
+            border-color: #7d9ef0;
+        }
+        .drive-btn {
+            background: #203b3a;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid #2b6b5c;
+            transition: 0.2s;
+        }
+        .drive-btn:hover {
+            background: #1f5550;
+            transform: translateY(-3px);
+            border-color: #50c0a0;
+        }
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .tech-tags span {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            border-radius: 40px;
+            padding: 6px 20px;
+            font-weight: 500;
+            color: #c7d6ff;
+            border: 1px solid #3f5688;
+        }
+
+        /* education */
+        .edu-block {
+            background: rgba(12, 20, 35, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 48px;
+            padding: 48px;
+            border-left: 8px solid #5f7ed9;
+        }
+        .edu-block h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #dfebff;
+        }
+        .edu-meta {
+            font-size: 1.3rem;
+            color: #9eb3f0;
+            margin: 8px 0 32px;
+        }
+        .edu-grid-list {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 20px 40px;
+        }
+        .edu-grid-list li {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 1.15rem;
+            color: #ccdaff;
+        }
+        .edu-grid-list i {
+            color: #5f82d0;
+            font-size: 1.5rem;
+        }
+
+        /* Experience block (similar to education) */
+        .exp-block {
+            background: rgba(12, 20, 35, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 48px;
+            padding: 48px;
+            border-left: 8px solid #5f7ed9;
+            margin-bottom: 40px;
+        }
+        .exp-block h3 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #dfebff;
+        }
+        .exp-meta {
+            font-size: 1.2rem;
+            color: #9eb3f0;
+            margin: 8px 0 25px;
+        }
+        .exp-grid-list {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 15px 30px;
+        }
+        .exp-grid-list li {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 1.1rem;
+            color: #ccdaff;
+        }
+        .exp-grid-list i {
+            color: #5f82d0;
+            font-size: 1.3rem;
+        }
+
+        /* services grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .service-card {
+            background: rgba(18, 28, 45, 0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 36px;
+            padding: 40px 30px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.25s;
+        }
+        .service-card:hover {
+            background: rgba(30, 45, 70, 0.7);
+            transform: translateY(-10px);
+            border-color: #4a6fb5;
+        }
+        .service-card i {
+            font-size: 3rem;
+            background: linear-gradient(145deg, #adc4ff, #6d94f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+        .service-card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ebf0ff;
+            margin-bottom: 15px;
+        }
+        .service-card p {
+            font-size: 1.1rem;
+            color: #b2c6f0;
+        }
+
+        /* contact cards */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px,1fr));
+            gap: 30px;
+        }
+        .contact-item {
+            background: rgba(20, 30, 48, 0.6);
+            backdrop-filter: blur(6px);
+            border-radius: 36px;
+            padding: 30px 20px;
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            border: 1px solid #2a3a60;
+        }
+        .contact-item i {
+            font-size: 2.8rem;
+            color: #a0b9ff;
+            width: 60px;
+            text-align: center;
+        }
+        .contact-info strong {
+            font-size: 1.2rem;
+            color: #dfeaff;
+        }
+        .contact-info a {
+            color: #b1c8ff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .contact-info a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* footer */
+        .footer-modern {
+            background: #050a16;
+            color: #a5b9e6;
+            border-radius: 56px 56px 0 0;
+            padding: 48px 0;
+            text-align: center;
+            margin-top: 100px;
+            border-top: 1px solid #1f2f50;
+        }
+        .footer-modern a {
+            color: #b3ccff;
+            margin: 0 18px;
+            text-decoration: none;
+        }
+
+        /* tab visibility */
+        .page { display: none; scroll-margin-top: 100px; }
+        .page:target { display: block; }
+        #home:target, #about:target, #skills:target, #projects:target, #education:target, #experience:target, #services:target, #contact:target { display: block; }
+        #home { display: block; }
+        body:has(:target) #home:not(:target) { display: none; }
+
+        @media (max-width:700px){
+            .hero h1{font-size:3rem;}
+            .hero-img{width:200px; height:200px;}
+            .about-grid img{width:280px; height:280px;}
+            .page-section{padding:36px 24px;}
+            .nav-links a{padding:8px 16px;}
+            .project-card{flex-direction:column;}
+            .button-group{flex-direction: column;}
+            .edu-grid-list, .exp-grid-list{grid-template-columns:1fr;}
+        }
+    </style>
+</head>
+<body>
+
+<!-- hero section dark glass -->
+<div class="hero">
+    <div class="container">
+        <h1>Omar Ahmed Samy</h1>
+        <div class="hero-tagline">data engineering · embedded · creative logic</div>
+        <div class="hero-contact">
+            <a href="mailto:omarahmed622006@gmail.com"><i class="fa-regular fa-envelope"></i> omarahmed622006@gmail.com</a>
+            <a href="tel:+201006270751"><i class="fa-solid fa-phone"></i> +20 100 627 0751</a>
+            <a href="https://linkedin.com/in/omarahmedsamy" target="_blank"><i class="fa-brands fa-linkedin"></i> /in/omarahmedsamy</a>
+        </div>
+        <!-- your photo here -->
+        <img src="omar profile.jpg" alt="Omar Ahmed Samy" class="hero-img">
+    </div>
+</div>
+
+<!-- sticky glass navigation (with new tabs) -->
+<div class="sticky-nav">
+    <div class="container" style="display: flex; justify-content: center;">
+        <div class="nav-wrap">
+            <div class="nav-links">
+                <a href="#home" class="nav-tab"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="#about" class="nav-tab"><i class="fa-regular fa-user"></i> About</a>
+                <a href="#skills" class="nav-tab"><i class="fa-regular fa-code"></i> Skills</a>
+                <a href="#projects" class="nav-tab"><i class="fa-regular fa-diagram-project"></i> Projects</a>
+                <a href="#education" class="nav-tab"><i class="fa-regular fa-graduation-cap"></i> Education</a>
+                <a href="#experience" class="nav-tab"><i class="fa-regular fa-briefcase"></i> Experience</a>
+                <a href="#services" class="nav-tab"><i class="fa-regular fa-handshake"></i> Services</a>
+                <a href="#contact" class="nav-tab"><i class="fa-regular fa-address-card"></i> Contact</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- HOME -->
+    <section id="home" class="page page-section">
+        <h2 class="section-title"><i class="fa-regular fa-compass"></i> hello, world</h2>
+        <div style="max-width: 900px;">
+            <p style="font-size: 2rem; font-weight: 400; background: linear-gradient(130deg,#b7d0ff, #ffffff); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">hardware meets data pipelines</p>
+            <p style="font-size:1.3rem; margin: 35px 0; color:#c8d6ff">CS student at ECU, building smart systems from Arduino to Python games. Interested in data engineering and embedded logic.</p>
+            <div style="display:flex; gap:30px; flex-wrap:wrap;">
+                <a href="#projects" class="btn-modern"><i class="fa-regular fa-eye"></i> see projects</a>
+                <a href="#contact" class="btn-modern" style="background:rgba(255,255,255,0.05);"><i class="fa-regular fa-comment"></i> say hi</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="page page-section">
+        <h2 class="section-title"><i class="fa-regular fa-user"></i> about me</h2>
+        <div class="about-grid">
+            <img src="omar profile.jpg" alt="Omar">
+            <div class="about-text">
+                <p>I'm fascinated by how data transforms industries. Starting with C++ and Arduino, I built autonomous systems, a smart clock, and even a tower defense game. Now I'm diving into data engineering: modeling, pipelines, and cloud fundamentals.</p>
+                <p>I enjoy combining hardware and software — from sensor logic to game development. Every project teaches me to think in systems.</p>
+                <a href="Omar Ahmed Samy _CV .pdf" class="btn-modern"><i class="fa-regular fa-file-pdf"></i> download resume</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS (with icon) -->
+    <section id="skills" class="page page-section">
+        <h2 class="section-title"><i class="fa-solid fa-screwdriver-wrench"></i> skills & toolkit</h2>
+        <div class="skills-grid">
+            <div class="skill-card"><i class="fa-solid fa-laptop-code"></i><h3>lang</h3><p>C++, Python, SQL</p></div>
+            <div class="skill-card"><i class="fa-solid fa-database"></i><h3>data eng</h3><p>ETL concepts, data warehousing</p></div>
+            <div class="skill-card"><i class="fa-solid fa-microchip"></i><h3>embedded</h3><p>Arduino, sensors, real‑time</p></div>
+            <div class="skill-card"><i class="fa-solid fa-gamepad"></i><h3>game dev</h3><p>Pygame, OOP, logic</p></div>
+        </div>
+    </section>
+
+    <!-- PROJECTS (with 4 projects) -->
+    <section id="projects" class="page page-section">
+        <h2 class="section-title"><i class="fa-regular fa-folder-open"></i> featured projects</h2>
+
+        <!-- Maze Car -->
+        <div class="project-card">
+            <div class="project-icon"><i class="fa-solid fa-car-side"></i></div>
+            <div class="project-content">
+                <h3>Autonomous Maze Car</h3>
+                <p>Arduino car solving maze with right‑hand rule. Ultrasonic + servo + motor driver. Real‑time obstacle avoidance.</p>
+                <div class="button-group">
+    <a href="https://github.com/ggomar/Maze_Car" class="github-btn" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+    <a href="https://drive.google.com/drive/folders/1EMcjzHR5Bvn8ivOCCGgc9mMgY2kPzAq2?usp=sharing" class="drive-btn" target="_blank"><i class="fa-brands fa-google-drive"></i> Photos & Video</a>
+</div>
+                <div class="tech-tags"><span>Arduino</span><span>Ultrasonic</span><span>Servo</span><span>C++</span></div>
+            </div>
+        </div>
+
+        <!-- RFID Smart Door -->
+        <div class="project-card">
+            <div class="project-icon"><i class="fa-solid fa-house-circle-check"></i></div>
+            <div class="project-content">
+                <h3>RFID Smart Door</h3>
+                <p>Access control with RC522 RFID and servo. Tap card to open/close. Secure, simple, and reliable.</p>
+                <div class="button-group">
+    <a href="https://github.com/ggomar/RFID-Smart-Door" class="github-btn" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+    <a href="https://drive.google.com/drive/folders/1BUqAhJnqoB8H3nCzuyMNfujewe0x1Vix?usp=sharing" class="drive-btn" target="_blank"><i class="fa-brands fa-google-drive"></i> Demo & photos</a>
+</div>
+                <div class="tech-tags"><span>RFID</span><span>Servo</span><span>Arduino</span><span>C++</span></div>
+            </div>
+        </div>
+
+        <!-- Arduino Smart Clock -->
+        <div class="project-card">
+            <div class="project-icon"><i class="fa-regular fa-clock"></i></div>
+            <div class="project-content">
+                <h3>Arduino Smart Clock</h3>
+                <p>Multi‑function clock with alarm, timer (minutes/seconds), date, and temperature sensor. Built with RTC, LCD, and DHT11.</p>
+               <div class="button-group">
+    <a href="https://github.com/ggomar/Arduino_Smart_Clock" class="github-btn" target="_blank"><i class="fa-brands fa-github"></i> Code</a>
+    <a href="https://drive.google.com/drive/folders/16Tu5Pn3zD_qqbZ4IvWu05y5q0-ZpZZuZ?usp=sharing" class="drive-btn" target="_blank"><i class="fa-brands fa-google-drive"></i> Video & images</a>
+</div>
+                <div class="tech-tags"><span>Arduino</span><span>RTC</span><span>LCD</span><span>DHT11</span><span>C++</span></div>
+            </div>
+        </div>
+
+        <!-- Pygame Tower Defense -->
+        <div class="project-card">
+            <div class="project-icon"><i class="fa-solid fa-chess-board"></i></div>
+            <div class="project-content">
+                <h3>Tower Defense (Pygame)</h3>
+                <p>Fully functional tower defense game with upgradeable towers, increasing difficulty, and smooth graphics. Built with Python & Pygame.</p>
+                <div class="button-group">
+    <a href="https://github.com/ggomar/Tower-Defense-Pygame-" class="github-btn" target="_blank"><i class="fa-brands fa-github"></i> Source code</a>
+    <a href="https://drive.google.com/drive/folders/1mYo1guAZ4KWbAxIwIbAAT1JSGf0By3em?usp=sharing" class="drive-btn" target="_blank"><i class="fa-brands fa-google-drive"></i> Gameplay video</a>
+</div>
+                <div class="tech-tags"><span>Python</span><span>Pygame</span><span>OOP</span><span>Game dev</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="page page-section">
+        <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> education</h2>
+        <div class="edu-block">
+            <h3>Egyptian Chinese University (ECU)</h3>
+            <div class="edu-meta">B.Sc. Computer Science · Oct 2024 – 2028 · CGPA 3.2</div>
+            <ul class="edu-grid-list">
+                <li><i class="fa-regular fa-circle-check"></i> Data structures & algorithms</li>
+                <li><i class="fa-regular fa-circle-check"></i> Database fundamentals</li>
+                <li><i class="fa-regular fa-circle-check"></i> OOP / software engineering</li>
+                <li><i class="fa-regular fa-circle-check"></i> Intro to data engineering</li>
+                <li><i class="fa-regular fa-circle-check"></i> Robotics lab member</li>
+                <li><i class="fa-regular fa-circle-check"></i> Dean's list 2025</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE (new) -->
+    <section id="experience" class="page page-section">
+        <h2 class="section-title"><i class="fa-regular fa-briefcase"></i> work experience</h2>
+        <div class="exp-block">
+            <h3>Data Engineering Trainee</h3>
+            <div class="exp-meta">DEPI (Digital Egypt Pioneers Initiative) · Present</div>
+            <p style="margin-bottom: 25px; color: #b2c6f0;">Intensive program focused on Microsoft Data Engineering track, covering:</p>
+            <ul class="exp-grid-list">
+                <li><i class="fa-regular fa-circle-check"></i> Prompt Engineering</li>
+                <li><i class="fa-regular fa-circle-check"></i> Intro to Data Engineering</li>
+                <li><i class="fa-regular fa-circle-check"></i> Programming Essentials</li>
+                <li><i class="fa-regular fa-circle-check"></i> SQL & Database Management</li>
+                <li><i class="fa-regular fa-circle-check"></i> Advanced Python for Data Engineering</li>
+                <li><i class="fa-regular fa-circle-check"></i> Data Pipelines</li>
+                <li><i class="fa-regular fa-circle-check"></i> Big Data Processing</li>
+                <li><i class="fa-regular fa-circle-check"></i> Microsoft Azure Data Engineer Associate</li>
+                <li><i class="fa-regular fa-circle-check"></i> Deployment</li>
+                <li><i class="fa-regular fa-circle-check"></i> AI for Data Engineers</li>
+                <li><i class="fa-regular fa-circle-check"></i> Capstone Project</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SERVICES (new) -->
+    <section id="services" class="page page-section">
+        <h2 class="section-title"><i class="fa-regular fa-handshake"></i> offered services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fa-solid fa-etl"></i>
+                <h3>ETL Pipelines</h3>
+                <p>Design and implementation of efficient ETL processes using Python and SQL.</p>
+            </div>
+            <div class="service-card">
+                <i class="fa-solid fa-database"></i>
+                <h3>Data Modeling & Warehousing</h3>
+                <p>Building scalable data models and warehouse solutions.</p>
+            </div>
+            <div class="service-card">
+                <i class="fa-solid fa-chart-line"></i>
+                <h3>SQL Optimization</h3>
+                <p>Writing and optimizing complex queries for better performance.</p>
+            </div>
+            <div class="service-card">
+                <i class="fa-solid fa-microchip"></i>
+                <h3>Embedded Systems Consulting</h3>
+                <p>Arduino-based prototypes and sensor integration.</p>
+            </div>
+            <div class="service-card">
+                <i class="fa-brands fa-python"></i>
+                <h3>Python for Data</h3>
+                <p>Data processing with Pandas, NumPy, and visualization.</p>
+            </div>
+            <div class="service-card">
+                <i class="fa-solid fa-cloud"></i>
+                <h3>Azure Data Fundamentals</h3>
+                <p>Introduction to cloud data services and basic pipeline deployment.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="page page-section">
+        <h2 class="section-title"><i class="fa-regular fa-address-book"></i> let's connect</h2>
+        <div class="contact-grid">
+            <div class="contact-item"><i class="fa-solid fa-phone"></i><div class="contact-info"><strong>Phone</strong><br><a href="tel:+201006270751">01006270751</a></div></div>
+            <div class="contact-item"><i class="fa-regular fa-envelope"></i><div class="contact-info"><strong>Email</strong><br><a href="mailto:omarahmed622006@gmail.com">omarahmed622006</a></div></div>
+            <div class="contact-item"><i class="fa-brands fa-linkedin"></i><div class="contact-info"><strong>LinkedIn</strong><br><a href="https://linkedin.com/in/omarahmedsamy" target="_blank">/in/omarahmedsamy</a></div></div>
+            <div class="contact-item"><i class="fa-solid fa-location-dot"></i><div class="contact-info"><strong>Location</strong><br>Cairo, Nasr City</div></div>
+        </div>
+    </section>
+</div>
+
+<!-- footer -->
+<footer class="footer-modern">
+    <p>© 2025 Omar Ahmed Samy — dark modern portfolio</p>
+    <div style="margin-top: 20px;">
+        <a href="https://linkedin.com/in/omarahmedsamy" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="mailto:omarahmed622006@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+        <a href="#home"><i class="fa-solid fa-arrow-up"></i> back to top</a>
+    </div>
+</footer>
+
+<script>
+    (function(){
+        const tabs = document.querySelectorAll('.nav-tab');
+        function setActive(){
+            const hash = window.location.hash || '#home';
+            tabs.forEach(tab => {
+                tab.classList.toggle('active', tab.getAttribute('href') === hash);
+            });
+        }
+        window.addEventListener('load', setActive);
+        window.addEventListener('hashchange', setActive);
+        if(!window.location.hash) document.querySelector('.nav-tab[href="#home"]').classList.add('active');
+    })();
+</script>
+</body>
+</html>
